@@ -10,7 +10,9 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 function Page() {
   const router = useRouter();
   const [input, setInput] = useState({
+    ademail:"admin@gmail.com",
     cname: "",
+    type:"",
     address: "",
     tnovacan: "",
     details: "",
@@ -27,8 +29,11 @@ function Page() {
     try {
       const response = await axios.post("/api/post/post", input);
       console.log(response);
+      
       setInput({
+        ademail:"admin@gmail.com",
         cname: "",
+        type:"",
         address: "",
         tnovacan: "",
         details: "",
@@ -63,6 +68,19 @@ function Page() {
               name="title"
               className="bg-transparent w-full p-2 pl-4 m-2 rounded-3xl border-[#3b3b3b] border-2"
               onChange={(e) => setInput({ ...input, cname: e.target.value })}
+            />
+          </div>
+          <div className="col-span-4">
+            <label htmlFor="" className="pl-4 uppercase">
+              type
+            </label>
+            <input
+              type="text"
+              name="type"
+              value={input.type}
+              placeholder="job/internship"
+              className="bg-transparent w-full p-2 pl-4 m-2 rounded-3xl border-[#3b3b3b] border-2"
+              onChange={(e) => setInput({ ...input, type: e.target.value })}
             />
           </div>
           <div className="col-span-4">

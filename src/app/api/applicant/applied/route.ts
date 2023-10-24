@@ -5,9 +5,6 @@ connect()
 
 export async function POST(req: NextRequest) {
     try {
-        // const obj=await req.json();
-        // JSON.stringify(obj)
-        // const id=obj.params.id
         const newobj = await req.json()
         JSON.stringify(newobj)
         console.log(newobj);
@@ -18,6 +15,18 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             message:"successfully data saved",
             data:newobj
+        })
+    } catch (error: any) {
+        return NextResponse.json({
+            error: error.message
+        }, { status: 500 })
+    }
+}
+export async function GET(){
+    try {
+        const applicant=await Applicants.find()
+        return NextResponse.json({
+            applicant
         })
     } catch (error: any) {
         return NextResponse.json({

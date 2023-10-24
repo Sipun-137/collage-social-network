@@ -6,7 +6,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 export default async function EventCard(props:any) {
     const session = await getServerSession(options);
 
-    const update=session?.user.role==="admin"?<Button href="/update/">update</Button>:null;
+    const update=session?.user.role!=="user"?<Button href="/update/">update</Button>:null;
     return (
     <>
     <div className="w-56 h-80 text-sm text-center border-2 border-white rounded-lg ">
@@ -24,8 +24,8 @@ export default async function EventCard(props:any) {
             props.edate
           }</p>
           <div className=" flex justify-center items-center p-3 m-1">
-          <Button href={`/a/${props._id}`}>APPLY</Button>
-          {}
+          <Button href={`/e/${props._id}`}>DETAILS</Button>
+          {update}
         </div>
         </div>
         

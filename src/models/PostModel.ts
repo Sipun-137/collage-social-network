@@ -5,6 +5,10 @@ const PostSchema =new mongoose.Schema({
         type:String,
         required:[true,"this is the recruiter email address"]
     },
+    type:{
+        type:String
+        ,required:[true,"this is for the internship or job"]
+    },
     cname:{
         type:String,
         required:[true,"Please provide a name"],

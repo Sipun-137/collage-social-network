@@ -6,12 +6,13 @@ import ProfileDD from "./PofileDD";
 
 const Navbar = async () => {
   const session = await getServerSession(options);
-  console.log(session);
   const signin = !session ? (
     <Link href="/api/auth/signin" className="">
       signin
     </Link>
-  ) : <ProfileDD/>;
+  ) : (
+    <ProfileDD />
+  );
 
   const menu = [
     { name: "Home", url: "/" },
@@ -28,23 +29,30 @@ const Navbar = async () => {
     { name: "test", url: "/test" },
   ];
 
-const adminmenu= [
-  { name: "Home", url: "/" },
-  {
-    name: "applications",
-    url: "/",
-    dropdown: [
-      { name: "Internship", url: "/r/internship" },
-      { name: "Job", url: "/r/job" },
-      { name: "Event", url: "/r/event" },
-    ],
-  },{
-    name:"post",url:"/r/post"
+  const adminmenu = [
+    { name: "Home", url: "/" },
+    {
+      name: "applications",
+      url: "/",
+      dropdown: [
+        { name: "Post", url: "/r/post" },
+        { name: "Event", url: "/r/event" },
+        { name: "Applicant", url: "/r/applicant" },
+      ],
+    },
+    { name: "posts" ,
+      url:"/",
+      dropdown:[
+          {name:"job",url:"/p/job"},
+          {name:"internship",url:"/p/internship"},
+          {name:"event",url:"/p/event"}
+      ]
   },
-  { name: "about us", url: "/about" },
-  { name: "test", url: "/test" },
-];
-const navmenu=session?.user.role==="admin"?adminmenu:menu;
+
+    { name: "about us", url: "/about" },
+    { name: "test", url: "/test" },
+  ];
+  const navmenu = session?.user.role === "admin" ? adminmenu : menu;
   return (
     <nav className="w-full bg-gray-800 shadow p-0">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
