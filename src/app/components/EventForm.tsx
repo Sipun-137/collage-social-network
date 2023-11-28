@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 export default function EventForm() {
-    const router = useRouter();
+  const router = useRouter();
   const [data, setData] = useState({
     ename: "",
     evenue: "",

@@ -7,8 +7,8 @@ import ProfileDD from "./PofileDD";
 const Navbar = async () => {
   const session = await getServerSession(options);
   const signin = !session ? (
-    <Link href="/api/auth/signin" className="">
-      signin
+    <Link href="/register" className="">
+      register
     </Link>
   ) : (
     <ProfileDD />
@@ -43,9 +43,9 @@ const Navbar = async () => {
     { name: "posts" ,
       url:"/",
       dropdown:[
-          {name:"job",url:"/p/job"},
-          {name:"internship",url:"/p/internship"},
-          {name:"event",url:"/p/event"}
+          {name:"job",url:"/job"},
+          {name:"internship",url:"/internship"},
+          {name:"event",url:"/event"}
       ]
   },
 

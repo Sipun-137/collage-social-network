@@ -1,8 +1,8 @@
-type UserType={
-    name:string,
-    password:string,
-    email:string,
-    role:string
+type UserType = {
+    name: string,
+    password: string,
+    email: string,
+    role: string
 }
 import type { NextAuthOptions, User } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github'
@@ -12,10 +12,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { GoogleProfile } from "next-auth/providers/google";
 import connect from "@/dbconfig/dbConfig";
 import Users from "@/models/UserModel"
-import axios from 'axios';
 connect()
-
-
 export const options: NextAuthOptions = {
     providers: [
         GithubProvider({
@@ -46,21 +43,21 @@ export const options: NextAuthOptions = {
         CredentialsProviders({
             name: "Credentials",
             credentials: {
-                username: {
-                    label: "Username:",
-                    type: "text",
-                    placeholder: "your username"
+                email: {
+                    label: "email:",
+                    type: "email",
+                    placeholder: "your email"
                 },
                 password: {
                     label: "Password:",
                     type: "password",
-                    placeholder: " password "
+                    placeholder: "password"
                 }
             },
             async authorize(credentials) {
                 // const user = { id: "42",email:"test@gmail.com", name: "test", password: "test", role: "admin" }
-                const UserObj:any=await Users.findOne({name:credentials?.username});
-                if (credentials?.username === UserObj?.name && credentials?.password === UserObj?.password ) {
+                const UserObj: any = await Users.findOne({ email: credentials?.email });
+                if (credentials?.email === UserObj?.email && credentials?.password === UserObj?.password) {
                     console.log(UserObj)
                     return UserObj;
                 } else {
@@ -73,7 +70,7 @@ export const options: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user }) {
             if (user) {
-                token.role = user.role 
+                token.role = user.role
             }
             return token
         },

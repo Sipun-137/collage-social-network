@@ -58,6 +58,7 @@ export default function ApplicationForm(props: any) {
     curstudy: cur,
     skills: skill,
     yearofexp: "",
+    status:"applied"
   });
   const yearlist = [];
   for (let i = 1999; i <= 2024; i++) {

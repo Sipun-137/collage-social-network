@@ -3,6 +3,9 @@ import connect from "@/dbconfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 connect()
 
+type jsonobj={
+    id:string
+}
 export async function POST(req: NextRequest) {
     try {
         const newobj = await req.json()
@@ -22,9 +25,9 @@ export async function POST(req: NextRequest) {
         }, { status: 500 })
     }
 }
-export async function GET(){
+export async function GET(req:NextRequest){
     try {
-        const applicant=await Applicants.find()
+        const applicant= await Applicants.find()
         return NextResponse.json({
             applicant
         })

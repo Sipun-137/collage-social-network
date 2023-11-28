@@ -90,6 +90,9 @@ const ApplicantSchema = new mongoose.Schema({
     yearofexp: {
         type: String
     },
+    status:{
+        type:String
+    }
 
 
 

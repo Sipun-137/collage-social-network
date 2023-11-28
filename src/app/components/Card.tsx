@@ -3,8 +3,10 @@ import { options } from "@/app/api/auth/[...nextauth]/option";
 import { getServerSession } from "next-auth/next";
 export default async function Card(props: any) {
   const session = await getServerSession(options);
-
-  const update=session?.user.role==="admin"?<Button href="/update/">update</Button>:null;
+  const applyb=session?.user.role==="user"?<Button href={`/a/${props._id}`}>apply</Button>:null;
+  const update=session?.user.role==="admin"?<Button href={`/a/update/${props._id}`}>update</Button>:null;
+  const deleteb=session?.user.role==="admin"?<Button href="/">delete</Button>:null;
+  
   return (
     <>
       <div className="w-56 h-80 text-sm text-center border-2 border-white rounded-lg ">
@@ -20,8 +22,9 @@ export default async function Card(props: any) {
           <p className="m-1">{props.duration}</p>
         </div>
         <div className="h-1/3 flex justify-center items-center p-3 m-1">
-          <Button href={`/a/${props._id}`}>APPLY</Button>
+          {applyb}
           {update}
+          {deleteb}
         </div>
       </div>
       

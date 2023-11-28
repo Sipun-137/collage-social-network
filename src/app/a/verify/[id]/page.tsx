@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
 import ApplicationForm from "@/app/components/ApplicationForm";
 import Details from "@/app/components/Details";
+import Review from "@/app/components/Review";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const session = await getServerSession(options);
@@ -13,9 +14,10 @@ export default async function Page({ params }: { params: { id: string } }) {
         page for the application submission
       </div>
       <Details {...params}/>
+      <Review {...params}/>
       <div className="flex flex-col justify-center items-center">
         <div className="m-8 p-4 text-mono ">
-          <p className="text-red-600">!!! before submitting the details please check it correctly. if it is correct then only proceed futher for the application submission!!!</p>
+          <p className="text-red-600">!!! read all the document before selecting a applicant for the vancacy !!!</p>
         </div>
       </div>
     </>
